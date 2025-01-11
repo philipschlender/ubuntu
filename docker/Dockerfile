@@ -14,8 +14,8 @@ RUN apt-get update; \
 
 RUN set -e -u; \
     cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime; \
-    groupadd --gid ${GROUP_ID} --system ${GROUP}; \
-    useradd --create-home --gid ${GROUP} --home-dir /${USER} --shell /bin/bash --system --uid ${USER_ID} ${USER}
+    groupadd --gid ${GROUP_ID} ${GROUP}; \
+    useradd --create-home --gid ${GROUP} --home-dir /${USER} --shell /bin/bash --uid ${USER_ID} ${USER}
 
 RUN set -e -u; \
     chown --recursive ${USER}:${USER} /${USER}
