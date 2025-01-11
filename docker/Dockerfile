@@ -1,4 +1,4 @@
-ARG UBUNTU_VERSION=22.04
+ARG UBUNTU_VERSION=24.04
 
 FROM ubuntu:${UBUNTU_VERSION}
 
@@ -13,7 +13,7 @@ RUN apt-get update; \
     rm --force --recursive  /var/lib/apt/lists/*
 
 RUN set -e -u; \
-    cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime; \
+    userdel --remove ubuntu; \
     groupadd --gid ${GROUP_ID} ${GROUP}; \
     useradd --create-home --gid ${GROUP} --home-dir /home/${USER} --shell /bin/bash --uid ${USER_ID} ${USER}
 
