@@ -12,12 +12,12 @@ RUN apt-get update; \
     apt-get install --no-install-recommends --yes less nano tzdata; \
     rm --force --recursive  /var/lib/apt/lists/*
 
-RUN set -e -u; \
+RUN set -e -u -x; \
     userdel --remove ubuntu; \
     groupadd --gid ${GROUP_ID} ${GROUP}; \
     useradd --create-home --gid ${GROUP} --home-dir /home/${USER} --shell /bin/bash --uid ${USER_ID} ${USER}
 
-RUN set -e -u; \
+RUN set -e -u -x; \
     chown --recursive ${USER}:${USER} /home/${USER}
 
 COPY docker/entrypoint.sh /usr/local/bin
