@@ -8,7 +8,8 @@ ARG TIMEZONE=Europe/Berlin
 ARG USER=user
 ARG USER_ID=1000
 
-RUN apt-get update; \
+RUN set -e -u -x; \
+    apt-get update; \
     apt-get install --no-install-recommends --yes less nano tzdata; \
     rm --force --recursive  /var/lib/apt/lists/*
 
