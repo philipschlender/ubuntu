@@ -20,6 +20,6 @@ RUN set -e -u -x; \
     chown --recursive ${USER}:${USER} /home/${USER}; \
     chmod --recursive 0750 /home/${USER}
 
-COPY docker/entrypoint.sh /usr/local/bin
+COPY docker/entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["entrypoint.sh"]
