@@ -17,7 +17,7 @@ RUN set -e -u -x; \
     userdel --remove ubuntu; \
     groupadd --gid ${GROUP_ID} ${GROUP}; \
     useradd --create-home --gid ${GROUP} --home-dir /home/${USER} --shell /bin/bash --uid ${USER_ID} ${USER}; \
-    chown --recursive ${USER}:${USER} /home/${USER}; \
+    chown --recursive ${USER}:${GROUP} /home/${USER}; \
     chmod --recursive 0750 /home/${USER}
 
 COPY docker/entrypoint.sh /usr/local/bin/
