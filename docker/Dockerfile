@@ -1,6 +1,6 @@
 ARG UBUNTU_VERSION=24.04
 
-FROM ubuntu:${UBUNTU_VERSION}
+FROM "ubuntu:${UBUNTU_VERSION}"
 
 ARG GROUP=user
 ARG GROUP_ID=1000
@@ -15,10 +15,10 @@ RUN set -e -u -x; \
 
 RUN set -e -u -x; \
     userdel --remove ubuntu; \
-    groupadd --gid ${GROUP_ID} ${GROUP}; \
-    useradd --create-home --gid ${GROUP} --home-dir /home/${USER} --shell /bin/bash --uid ${USER_ID} ${USER}; \
-    chown --recursive ${USER}:${GROUP} /home/${USER}; \
-    chmod --recursive 0750 /home/${USER}
+    groupadd --gid "${GROUP_ID}" "${GROUP}"; \
+    useradd --create-home --gid "${GROUP}" --home-dir "/home/${USER}" --shell /bin/bash --uid "${USER_ID}" "${USER}"; \
+    chown --recursive "${USER}:${GROUP}" "/home/${USER}"; \
+    chmod --recursive 0750 "/home/${USER}"
 
 COPY docker/entrypoint.sh /usr/local/bin/
 
