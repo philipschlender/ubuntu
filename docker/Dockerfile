@@ -1,6 +1,6 @@
 ARG UBUNTU_VERSION=24.04
 
-FROM ubuntu:${UBUNTU_VERSION}
+FROM "ubuntu:${UBUNTU_VERSION}"
 
 ARG GROUP=user
 ARG GROUP_ID=1000
@@ -14,11 +14,12 @@ RUN set -e -u -x; \
     rm --force --recursive  /var/lib/apt/lists/*
 
 RUN set -e -u -x; \
+    ln --force --symbolic "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime; \
     userdel --remove ubuntu; \
-    groupadd --gid ${GROUP_ID} ${GROUP}; \
-    useradd --create-home --gid ${GROUP} --home-dir /home/${USER} --shell /bin/bash --uid ${USER_ID} ${USER}; \
-    chown --recursive ${USER}:${USER} /home/${USER}; \
-    chmod --recursive 0750 /home/${USER}
+    groupadd --gid "${GROUP_ID}" "${GROUP}"; \
+    useradd --create-home --gid "${GROUP}" --home-dir "/home/${USER}" --shell /bin/bash --uid "${USER_ID}" "${USER}"; \
+    chown --recursive "${USER}:${GROUP}" "/home/${USER}"; \
+    chmod --recursive 0750 "/home/${USER}"
 
 COPY docker/entrypoint.sh /usr/local/bin/
 
