@@ -14,6 +14,7 @@ RUN set -e -u -x; \
     rm --force --recursive  /var/lib/apt/lists/*
 
 RUN set -e -u -x; \
+    ln --force --symbolic "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime; \
     userdel --remove ubuntu; \
     groupadd --gid "${GROUP_ID}" "${GROUP}"; \
     useradd --create-home --gid "${GROUP}" --home-dir "/home/${USER}" --shell /bin/bash --uid "${USER_ID}" "${USER}"; \
