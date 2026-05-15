@@ -10,6 +10,7 @@ ARG USER_ID=1000
 
 RUN set -e -u -x; \
     apt-get update; \
+    apt-get upgrade --yes; \
     apt-get install --no-install-recommends --yes less nano tzdata; \
     rm --force --recursive  /var/lib/apt/lists/*
 
