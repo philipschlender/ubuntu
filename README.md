@@ -15,17 +15,11 @@ docker build --file docker/Dockerfile --tag philipschlender/ubuntu:latest .
 ### Run
 
 ```bash
-docker run --detach --name ubuntu --rm philipschlender/ubuntu:latest
+docker run --interactive --name ubuntu --rm --tty philipschlender/ubuntu:latest
 ```
 
-### Exec
+### Push
 
 ```bash
-docker exec --interactive --tty ubuntu bash
-```
-
-### Stop
-
-```bash
-docker stop ubuntu
+docker push philipschlender/ubuntu:latest
 ```
